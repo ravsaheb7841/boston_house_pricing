@@ -1,31 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Boston House Price Prediction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+    }
+    .card {
+      width: 450px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      padding: 30px;
+      background-color: white;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    .form-control {
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .btn-primary {
+      width: 100%;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #007bff, #00c6ff);
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(45deg, #00c6ff, #007bff);
+    }
+    .prediction {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #007bff;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="login">
-        <h1>Boston House Price Prediction</h1>
+  <div class="card">
+    <h1>Boston House Price Prediction</h1>
 
-        <form action="{{ url_for('predict')}}" method="post">
-            <input type="text" name="CRIM" placeholder="CRIM" required="required" />
-            <input type="text" name="ZN" placeholder="ZN" required="required" /><br>
-            <input type="text" name="INDUS" placeholder="INDUS" required="required" />
-            <input type="text" name="CHAS" placeholder="CHAS" required="required" /><br>
-            <input type="text" name="NOX" placeholder="NOX" required="required" />
-            <input type="text" name="RM" placeholder="RM" required="required" /><br>
-            <input type="text" name="AGE" placeholder="AGE" required="required" />
-            <input type="text" name="DIS" placeholder="DIS" required="required" /><br>
-            <input type="text" name="RAD" placeholder="RAD" required="required" />
-            <input type="text" name="TAX" placeholder="TAX" required="required" /><br>
-            <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required" />
-            <input type="text" name="B" placeholder="B" required="required" /><br>
-            <input type="text" name="LSTAT" placeholder="LSTAT" required="required" /><br>
+    <form action="{{ url_for('predict') }}" method="post">
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" name="CRIM" class="form-control" placeholder="CRIM" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="ZN" class="form-control" placeholder="ZN" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="INDUS" class="form-control" placeholder="INDUS" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="CHAS" class="form-control" placeholder="CHAS" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="NOX" class="form-control" placeholder="NOX" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="RM" class="form-control" placeholder="RM" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="AGE" class="form-control" placeholder="AGE" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="DIS" class="form-control" placeholder="DIS" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="RAD" class="form-control" placeholder="RAD" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="TAX" class="form-control" placeholder="TAX" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="PTRATIO" class="form-control" placeholder="PTRATIO" required>
+        </div>
+        <div class="col-md-6">
+          <input type="text" name="B" class="form-control" placeholder="B" required>
+        </div>
+        <div class="col-12">
+          <input type="text" name="LSTAT" class="form-control" placeholder="LSTAT" required>
+        </div>
+      </div>
 
-            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-        </form>
-    </div>
-{{prediction_text}}
+      <button type="submit" class="btn btn-primary mt-3">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+      <div class="prediction">{{ prediction_text }}</div>
+    {% endif %}
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
