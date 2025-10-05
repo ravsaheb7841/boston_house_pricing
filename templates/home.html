@@ -18,7 +18,7 @@
       font-family: 'Poppins', sans-serif;
     }
     .card {
-      width: 450px;
+      width: 700px;
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       padding: 30px;
@@ -28,6 +28,11 @@
       text-align: center;
       color: #333;
       margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .form-label {
+      font-weight: 500;
+      color: #444;
     }
     .form-control {
       border-radius: 10px;
@@ -35,6 +40,7 @@
     }
     .btn-primary {
       width: 100%;
+      height: 50px;
       border-radius: 10px;
       background: linear-gradient(45deg, #007bff, #00c6ff);
       border: none;
@@ -60,43 +66,68 @@
     <form action="{{ url_for('predict') }}" method="post">
       <div class="row">
         <div class="col-md-6">
-          <input type="text" name="CRIM" class="form-control" placeholder="CRIM" required>
+          <label class="form-label">CRIM (e.g. 0.00632)</label>
+          <input type="text" name="CRIM" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="ZN" class="form-control" placeholder="ZN" required>
+          <label class="form-label">ZN (e.g. 18.0)</label>
+          <input type="text" name="ZN" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="INDUS" class="form-control" placeholder="INDUS" required>
+          <label class="form-label">INDUS (e.g. 2.31)</label>
+          <input type="text" name="INDUS" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="CHAS" class="form-control" placeholder="CHAS" required>
+          <label class="form-label">CHAS (0 if not near river, 1 if near)</label>
+          <input type="text" name="CHAS" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="NOX" class="form-control" placeholder="NOX" required>
+          <label class="form-label">NOX (e.g. 0.538)</label>
+          <input type="text" name="NOX" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="RM" class="form-control" placeholder="RM" required>
+          <label class="form-label">RM (e.g. 6.575)</label>
+          <input type="text" name="RM" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="AGE" class="form-control" placeholder="AGE" required>
+          <label class="form-label">AGE (e.g. 65.2)</label>
+          <input type="text" name="AGE" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="DIS" class="form-control" placeholder="DIS" required>
+          <label class="form-label">DIS (e.g. 4.09)</label>
+          <input type="text" name="DIS" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="RAD" class="form-control" placeholder="RAD" required>
+          <label class="form-label">RAD (e.g. 1)</label>
+          <input type="text" name="RAD" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="TAX" class="form-control" placeholder="TAX" required>
+          <label class="form-label">TAX (e.g. 296.0)</label>
+          <input type="text" name="TAX" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="PTRATIO" class="form-control" placeholder="PTRATIO" required>
+          <label class="form-label">PTRATIO (e.g. 15.3)</label>
+          <input type="text" name="PTRATIO" class="form-control" required>
         </div>
+
         <div class="col-md-6">
-          <input type="text" name="B" class="form-control" placeholder="B" required>
+          <label class="form-label">B (e.g. 396.90)</label>
+          <input type="text" name="B" class="form-control" required>
         </div>
-        <div class="col-12">
-          <input type="text" name="LSTAT" class="form-control" placeholder="LSTAT" required>
+
+        <div class="col-md-12">
+          <label class="form-label">LSTAT (e.g. 4.98)</label>
+          <input type="text" name="LSTAT" class="form-control" required>
         </div>
       </div>
 
@@ -104,7 +135,9 @@
     </form>
 
     {% if prediction_text %}
-      <div class="prediction">{{ prediction_text }}</div>
+      <div class="alert alert-info mt-4 text-center">
+        <strong>{{ prediction_text }}</strong>
+      </div>
     {% endif %}
   </div>
 
