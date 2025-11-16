@@ -1,10 +1,6 @@
 import pickle
 from flask import Flask, request, render_template, jsonify
 import numpy as np
-import locale
-
-# Set Indian number formatting
-locale.setlocale(locale.LC_ALL, 'en_IN')
 
 app = Flask(__name__)
 
@@ -27,9 +23,9 @@ def predict():
         output = model.predict(final_input)[0]
         rounded_output = round(output, 2)
 
-        # Convert lakh → rupees
+        # Convert lakh → rupees (manual formatting)
         rupees = int(rounded_output * 100000)
-        formatted_rupees = locale.format_string("%d", rupees, grouping=True)
+        formatted_rupees = f"{rupees:,}"
 
         prediction_text = f"{rounded_output} lakh  (₹ {formatted_rupees})"
 
