@@ -2,146 +2,140 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Boston House Price Prediction</title>
+  <title>House Price Prediction</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     body {
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Poppins', sans-serif;
+      padding: 20px;
     }
     .card {
-      width: 700px;
+      width: 800px;
       border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       padding: 30px;
       background-color: white;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      animation: fadeIn 0.8s ease-in-out;
     }
     h1 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 25px;
       font-weight: bold;
-    }
-    .form-label {
-      font-weight: 500;
-      color: #444;
-    }
-    .form-control {
-      border-radius: 10px;
-      margin-bottom: 15px;
+      color: #003b76;
+      text-align: center;
+      margin-bottom: 25px;
     }
     .btn-primary {
       width: 100%;
       height: 50px;
+      font-size: 18px;
       border-radius: 10px;
       background: linear-gradient(45deg, #007bff, #00c6ff);
       border: none;
-      transition: 0.3s;
     }
     .btn-primary:hover {
-      background: linear-gradient(45deg, #00c6ff, #007bff);
+      transform: scale(1.02);
     }
-    .prediction {
+    .result-card {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #e3f2fd;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
       text-align: center;
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 18px;
-      color: #007bff;
+      animation: pop 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Loader */
+    #loader {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>Boston House Price Prediction</h1>
 
-    <form action="{{ url_for('predict') }}" method="post">
-      <div class="row">
-        <div class="col-md-6">
-          <label class="form-label">CRIM (e.g. 0.00632)</label>
-          <input type="text" name="CRIM" class="form-control" required>
-        </div>
+<div id="loader">
+  <div class="spinner-border text-light" style="width: 4rem; height: 4rem;"></div>
+</div>
 
-        <div class="col-md-6">
-          <label class="form-label">ZN (e.g. 18.0)</label>
-          <input type="text" name="ZN" class="form-control" required>
-        </div>
+<div class="card">
 
-        <div class="col-md-6">
-          <label class="form-label">INDUS (e.g. 2.31)</label>
-          <input type="text" name="INDUS" class="form-control" required>
-        </div>
+  <h1>Boston House Price Prediction</h1>
 
-        <div class="col-md-6">
-          <label class="form-label">CHAS (0 if not near river, 1 if near)</label>
-          <input type="text" name="CHAS" class="form-control" required>
-        </div>
+  <form action="{{ url_for('predict') }}" method="post" id="predictForm">
 
-        <div class="col-md-6">
-          <label class="form-label">NOX (e.g. 0.538)</label>
-          <input type="text" name="NOX" class="form-control" required>
-        </div>
+    <div class="row">
 
-        <div class="col-md-6">
-          <label class="form-label">RM (e.g. 6.575)</label>
-          <input type="text" name="RM" class="form-control" required>
-        </div>
+      <!-- Auto grid fields -->
+      {% for label, name in {
+        "CRIM (Crime Rate)": "CRIM",
+        "ZN (Residential Land %)": "ZN",
+        "INDUS (Industrial %)": "INDUS",
+        "CHAS (Near River? 0/1)": "CHAS",
+        "NOX (Pollution Index)": "NOX",
+        "RM (Avg Rooms)": "RM",
+        "AGE (Old Houses %)": "AGE",
+        "DIS (Distance to Employment)": "DIS",
+        "RAD (Highway Access Index)": "RAD",
+        "TAX (Property Tax Rate)": "TAX",
+        "PTRATIO (Teacher-Student Ratio)": "PTRATIO",
+        "B (African-American Index)": "B",
+        "LSTAT (% Poor Population)": "LSTAT"
+      }.items() %}
 
-        <div class="col-md-6">
-          <label class="form-label">AGE (e.g. 65.2)</label>
-          <input type="text" name="AGE" class="form-control" required>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">DIS (e.g. 4.09)</label>
-          <input type="text" name="DIS" class="form-control" required>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">RAD (e.g. 1)</label>
-          <input type="text" name="RAD" class="form-control" required>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">TAX (e.g. 296.0)</label>
-          <input type="text" name="TAX" class="form-control" required>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">PTRATIO (e.g. 15.3)</label>
-          <input type="text" name="PTRATIO" class="form-control" required>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">B (e.g. 396.90)</label>
-          <input type="text" name="B" class="form-control" required>
-        </div>
-
-        <div class="col-md-12">
-          <label class="form-label">LSTAT (e.g. 4.98)</label>
-          <input type="text" name="LSTAT" class="form-control" required>
-        </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">{{ label }}</label>
+        <input type="number" step="any" name="{{ name }}" class="form-control" required>
       </div>
 
-      <button type="submit" class="btn btn-primary mt-3">Predict</button>
-    </form>
+      {% endfor %}
 
-    {% if prediction_text %}
-      <div class="alert alert-info mt-4 text-center">
-        <strong>{{ prediction_text }}</strong>
-      </div>
-    {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Predict</button>
+
+  </form>
+
+  {% if prediction_text %}
+  <div class="result-card mt-4">
+    <h4>Estimated House Price</h4>
+    <h2 class="text-primary mt-2">{{ prediction_text }}</h2>
   </div>
+  {% endif %}
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+
+<!-- Loader Script -->
+<script>
+  const form = document.getElementById('predictForm');
+  form.addEventListener('submit', () => {
+    document.getElementById('loader').style.display = 'flex';
+  });
+</script>
+
 </body>
 </html>
