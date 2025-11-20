@@ -1,35 +1,35 @@
-
-````
 # Boston House Price Prediction Web App
 
-This is a **Flask-based web application** that predicts the price of a house in Boston using machine learning.  
-The app uses the **Boston Housing Dataset** and provides predictions in **Lakh (₹)** with proper Indian formatting.
+This is a **Flask-based web application** that predicts house prices in Boston using machine learning.
+Predictions are displayed in **Lakh (₹)** with proper Indian formatting.
 
 ---
 
 ## 🛠 Features
 
-- Predict house prices using 13 key features:
-  - CRIM, ZN, INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT
-- Interactive web interface built with **HTML & Bootstrap**
-- **Dark mode toggle** for user convenience
-- Loading spinner while predictions are processed
-- Graphs:
-  - Predicted vs Actual house prices
-  - Model performance metrics (MAE, MSE, RMSE, R²)
-- Dataset preview included
+* Predict house prices using 13 key features:
+
+  * CRIM, ZN, INDUS, CHAS, NOX, RM, AGE, DIS, RAD, TAX, PTRATIO, B, LSTAT
+* Interactive web interface built with **HTML & Bootstrap**
+* **Dark mode toggle** for user convenience
+* Loading spinner while predictions are processed
+* Graphs:
+
+  * Predicted vs Actual house prices
+  * Model performance metrics (MAE, MSE, RMSE, R²)
+* Dataset preview included
 
 ---
 
 ## 📦 Tech Stack
 
-- Python 3.x
-- Flask
-- Pandas, NumPy
-- Scikit-learn (Machine Learning)
-- Matplotlib (Graphs)
-- Pickle (Model Saving / Loading)
-- Bootstrap 5 (Frontend UI)
+* Python 3.x
+* Flask
+* Pandas, NumPy
+* Scikit-learn (Machine Learning)
+* Matplotlib (Graphs)
+* Pickle (Model Saving / Loading)
+* Bootstrap 5 (Frontend UI)
 
 ---
 
@@ -40,12 +40,13 @@ The app uses the **Boston Housing Dataset** and provides predictions in **Lakh (
 ```bash
 git clone <repository_url>
 cd <repository_folder>
-````
+```
 
 2. Create a virtual environment (recommended):
 
 ```bash
 python -m venv venv
+# Activate environment:
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 ```
@@ -108,14 +109,11 @@ project_folder/
 ## 👨‍💻 Author
 
 * Developed by **Ravsaheb**
-* GitHub: [Your GitHub Link]
-* LinkedIn: [Your LinkedIn Link]
+* GitHub: https://github.com/ravsaheb7841
+* LinkedIn: https://www.linkedin.com/in/ravsaheb-bansode-a75a802a0/
 
 ---
 
 ## 📄 License
 
-This project is open-source and free to use for learning and personal purposes.
-
-```
-```
+This project is open-source and free to use for learning and personal purposes (MIT License).
