@@ -8,10 +8,19 @@
 
     <div class="row">
       {% for label, name in {
-        "CRIM": "CRIM", "ZN":"ZN","INDUS":"INDUS","CHAS":"CHAS",
-        "NOX":"NOX","RM":"RM","AGE":"AGE","DIS":"DIS",
-        "RAD":"RAD","TAX":"TAX","PTRATIO":"PTRATIO",
-        "B":"B","LSTAT":"LSTAT"
+        "CRIM: Crime Rate by Town": "CRIM", 
+        "ZN: Residential Land for Large Lots":"ZN",
+        "INDUS: Non-Retail Business Acres":"INDUS",
+        "CHAS: Near Charles River (1 = Yes, 0 = No)":"CHAS",
+        "NOX: Nitric Oxides Concentration":"NOX",
+        "RM: Average Number of Rooms":"RM",
+        "AGE: Proportion of Owner-Occupied Units Built Prior to 1940":"AGE",
+        "DIS: Weighted Distance to Employment Centers":"DIS",
+        "RAD: Index of Accessibility to Radial Highways":"RAD",
+        "TAX: Property Tax Rate":"TAX",
+        "PTRATIO: Pupil-Teacher Ratio":"PTRATIO",
+        "B: Proportion of Black Residents":"B",
+        "LSTAT: Percentage of Lower Status Population":"LSTAT"
       }.items() %}
 
       <div class="col-md-6 mb-3">
