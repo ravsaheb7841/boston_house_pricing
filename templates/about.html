@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card p-4 shadow">
+
+  <h2 class="text-center fw-bold">About This Project</h2>
+
+  <p>
+    This House Price Prediction Web App is created using the 
+    <strong>Boston Housing Dataset</strong>.  
+    It predicts house prices based on 13 important features.
+  </p>
+
+  <ul>
+    <li>Crime rate</li>
+    <li>Number of rooms</li>
+    <li>Pollution level</li>
+    <li>Distance to key areas</li>
+    <li>Tax rate</li>
+    <li>Student–teacher ratio & more</li>
+  </ul>
+
+  <p>Technologies used:</p>
+
+  <ul>
+    <li>Python, Flask</li>
+    <li>Scikit-learn</li>
+    <li>Machine Learning (Regression Models)</li>
+    <li>Bootstrap UI</li>
+  </ul>
+
+  <p>
+    The model predicts prices in <strong>Lakh (₹)</strong> with proper Indian formatting.
+    This project demonstrates real-world ML deployment.
+  </p>
+
+  <a href="/" class="btn btn-primary w-100 mt-3">Back to Home</a>
+
+  <footer>
+    © 2024 House Price Predictor | Developed by Ravsaheb
+  </footer>
+
+</div>
+
+{% endblock %}

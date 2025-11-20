@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="text-center fw-bold">Dataset Preview</h2>
+<p class="text-center mb-4">Rows: {{shape[0]}}, Columns: {{shape[1]}}</p>
+
+<div class="card p-4 shadow table-responsive">
+  {{ table|safe }}
+</div>
+
+<footer>
+  © 2024 House Price Predictor | Developed by Ravsaheb
+</footer>
+
+{% endblock %}
